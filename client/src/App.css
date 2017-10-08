@@ -1,3 +1,5 @@
+/* I will probably try out styled components once I finish main features so I do not plan to make this any more "production" looking */
+
 .app {
   text-align: center;
   padding: 0;
@@ -14,8 +16,8 @@
 }
 
 @keyframes spin {
-    0%  {-webkit-transform: rotate(0deg);}
-    100% {-webkit-transform: rotate(360deg);}   
+  0%  {-webkit-transform: rotate(0deg);}
+  100% {-webkit-transform: rotate(360deg);}   
 }
 
 .app-header {
