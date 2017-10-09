@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   ApolloClient,
   gql,
   graphql,
-  ApolloProvider,
-} from 'react-apollo';
-import { 
+  ApolloProvider
+} from 'react-apollo'
+import {
   makeExecutableSchema,
   addMockFunctionsToSchema
-} from 'graphql-tools';
- import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils';
- import { typeDefs } from './schema';
-import logo from './logo.svg';
-import './App.css';
+} from 'graphql-tools'
+import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils'
+import { typeDefs } from './schema'
+import logo from './logo.svg'
+import './App.css'
 
-const schema = makeExecutableSchema({ typeDefs });
-addMockFunctionsToSchema({ schema });
-const mockNetworkInterface = mockNetworkInterfaceWithSchema({ schema });
+const schema = makeExecutableSchema({ typeDefs })
+addMockFunctionsToSchema({ schema })
+const mockNetworkInterface = mockNetworkInterfaceWithSchema({ schema })
 const client = new ApolloClient({
-  networkInterface: mockNetworkInterface,
-});
+  networkInterface: mockNetworkInterface
+})
 const channelsListQuery = gql`
 query ChannelsListQuery {
   channels {
@@ -27,24 +27,24 @@ query ChannelsListQuery {
     name
   }
 }
-`;
+`
 
 const ChannelsList = ({ data: {loading, error, channels }}) => {
   if (loading) {
-    return <div>Loading ...</div>;
+    return <div>Loading ...</div>
   }
   if (error) {
-    return <div>{error.message}</div>;
+    return <div>{error.message}</div>
   }
   return <ul className="item-list">
-    { channels.map( channel => <li key={channel.id}>{channel.name}</li> ) }
-  </ul>;
-};
+    { channels.map(channel => <li key={channel.id}>{channel.name}</li>) }
+  </ul>
+}
 
-const ChannelsListWithData = graphql(channelsListQuery)(ChannelsList);
+const ChannelsListWithData = graphql(channelsListQuery)(ChannelsList)
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <ApolloProvider client={client}>
         <div className="app">
@@ -55,7 +55,7 @@ class App extends Component {
           <ChannelsListWithData />
         </div>
       </ApolloProvider>
-    );
+    )
   }
 }
-export default App;
+export default App

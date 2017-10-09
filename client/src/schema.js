@@ -8,4 +8,4 @@ type Channel {
 type Query {
    channels: [Channel]    # "[]" means this is a list of channels
 }
-`;
+`

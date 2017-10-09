@@ -1,8 +1,8 @@
 import {
-  makeExecutableSchema,
-} from 'graphql-tools';
+  makeExecutableSchema
+} from 'graphql-tools'
 
-import { resolvers } from './resolvers';
+import { resolvers } from './resolvers'
 
 const typeDefs = `
 type Channel {
@@ -14,7 +14,7 @@ type Channel {
 type Query {
   channels: [Channel]    # "[]" means this is a list of channels
 }
-`;
+`
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-export { schema };
+const schema = makeExecutableSchema({ typeDefs, resolvers })
+export { schema }

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "GraphQL Chat Example- Integrated with GraphQL, Express, ES6/ES7, Babel, React, Apollo",
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore server"
+    "lint client": "node_modules/.bin/eslint --ignore-path .gitignore client",
+    "lint server": "node_modules/.bin/eslint --ignore-path .gitignore server"
   },
   "repository": {
     "type": "git"
