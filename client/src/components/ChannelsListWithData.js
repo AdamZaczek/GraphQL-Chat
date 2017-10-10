@@ -5,7 +5,7 @@ import {
 
 import AddChannelWithMutation from './AddChannelWithMutation'
 
-const channelsListQuery = gql`
+export const channelsListQuery = gql`
 query ChannelsListQuery {
   channels {
     id
@@ -29,4 +29,6 @@ const ChannelsList = ({ data: { loading, error, channels } }) => {
 
 const ChannelsListWithData = graphql(channelsListQuery)(ChannelsList)
 
-export default ChannelsListWithData
+export default graphql(channelsListQuery, {
+  options: { pollInterval: 5000 }
+})(ChannelsList)
