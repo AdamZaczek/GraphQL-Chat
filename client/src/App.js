@@ -3,23 +3,20 @@ import {
   ApolloClient,
   gql,
   graphql,
-  ApolloProvider
+  ApolloProvider,
+  createNetworkInterface
 } from 'react-apollo'
-import {
-  makeExecutableSchema,
-  addMockFunctionsToSchema
-} from 'graphql-tools'
-import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils'
-import { typeDefs } from './schema'
 import logo from './logo.svg'
 import './App.css'
 
-const schema = makeExecutableSchema({ typeDefs })
-addMockFunctionsToSchema({ schema })
-const mockNetworkInterface = mockNetworkInterfaceWithSchema({ schema })
-const client = new ApolloClient({
-  networkInterface: mockNetworkInterface
+const networkInterface = createNetworkInterface({
+  uri: 'http://localhost:4000/graphql'
 })
+
+const client = new ApolloClient({
+  networkInterface
+})
+
 const channelsListQuery = gql`
 query ChannelsListQuery {
   channels {
@@ -29,7 +26,7 @@ query ChannelsListQuery {
 }
 `
 
-const ChannelsList = ({ data: {loading, error, channels }}) => {
+const ChannelsList = ({ data: { loading, error, channels } }) => {
   if (loading) {
     return <div>Loading ...</div>
   }
