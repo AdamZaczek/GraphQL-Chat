@@ -3,7 +3,7 @@ import {
   graphql,
   gql } from 'react-apollo'
 
-import AddChannel from './AddChannel'
+import AddChannelWithMutation from './AddChannelWithMutation'
 
 const channelsListQuery = gql`
 query ChannelsListQuery {
@@ -22,7 +22,7 @@ const ChannelsList = ({ data: { loading, error, channels } }) => {
     return <div>{error.message}</div>
   }
   return <ul className="item-list">
-    <AddChannel />
+    <AddChannelWithMutation />
     { channels.map(channel => <li key={channel.id}>{channel.name}</li>) }
   </ul>
 }
