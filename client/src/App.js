@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {
   ApolloClient,
-  gql,
-  graphql,
   ApolloProvider,
   createNetworkInterface
 } from 'react-apollo'
+
+import ChannelsListWithData from './components/ChannelsListWithData'
 import logo from './logo.svg'
 import './App.css'
 
@@ -16,29 +16,6 @@ const networkInterface = createNetworkInterface({
 const client = new ApolloClient({
   networkInterface
 })
-
-const channelsListQuery = gql`
-query ChannelsListQuery {
-  channels {
-    id
-    name
-  }
-}
-`
-
-const ChannelsList = ({ data: { loading, error, channels } }) => {
-  if (loading) {
-    return <div>Loading ...</div>
-  }
-  if (error) {
-    return <div>{error.message}</div>
-  }
-  return <ul className="item-list">
-    { channels.map(channel => <li key={channel.id}>{channel.name}</li>) }
-  </ul>
-}
-
-const ChannelsListWithData = graphql(channelsListQuery)(ChannelsList)
 
 class App extends Component {
   render () {
